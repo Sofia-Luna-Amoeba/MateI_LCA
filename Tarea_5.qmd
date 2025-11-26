@@ -1,0 +1,182 @@
+---
+title: "Tarea 5"
+format: html
+---
+
+## Ejercicio 1
+
+Calcular
+$$\frac{8!}{5!3!}$$
+
+```{python}
+import math
+
+result = math.comb(8, 3)
+result
+```
+
+## Ejercicio 2
+
+Calculate each of the following. Your answer must be a number. No arithmetic operations are allowed in your answer. Please give 7 places after your decimal point if you use scientific notation.
+
+
+a) $\frac{180!}{10!170!}$
+
+
+```{python}
+import math
+
+result_a = math.comb(180, 170)
+result_a
+```
+
+b) $\frac{420!}{400!50!}$
+
+
+```{python}
+import math
+
+result_b = math.comb(420, 400) * math.factorial(20) / math.factorial(50)
+
+result_b
+
+```
+
+
+c) $\frac{555! - 550!}{551!}$
+
+
+```{python}
+import math
+
+result_c = (math.factorial(555) - math.factorial(550)) / math.factorial(551)
+result_c
+```
+## Ejercicio 4
+
+Standard automobile license plates in a country display 2 numbers, followed by 2 letters, followed by 3 numbers. How many different standard plates are possible in this system? (Assume repetition of letters and numbers is allowed.)
+
+```{python}
+import numpy as np
+
+numbers = 10  # 0-9
+letters = 26  # A-Z
+
+# Calculate the total combinations
+total_plates = (numbers ** 2) * (letters ** 2) * (numbers ** 3)
+total_plates
+```
+
+
+## Ejercicio 5
+
+A true-false test contains 11 questions. In how many different ways can the 11-question test be answered?
+
+
+```{python}
+questions = 11
+options_per_question = 2  # True or False
+
+total_ways = options_per_question ** questions
+total_ways
+```
+
+
+## Ejercicio 6
+
+This problem is taken from the delightful book "Problems for Mathematicians, Young and Old" by Paul R. Halmos.
+Suppose that 893 tennis players want to play an elimination tournament. That means: they pair up, at random, for each round; if the number of players before the round begins is odd, one of them, chosen at random, sits out that round. The winners of each round, and the odd one who sat it out (if there was an odd one), play in the next round, till, finally, there is only one winner, the champion. What is the total number of matches to be played altogether, in all the rounds of the tournament?
+
+
+```{python}
+#| code-fold: true
+
+players = 893
+matches = 0
+rounds = 0
+
+while players > 1:
+    matches += players // 2
+    players = (players + 1) // 2
+
+    rounds += 1
+    print(f"After round {rounds}, remaining players: {players}")
+print(f"Total matches played: {matches}")
+```
+
+## Ejercicio 10
+
+James owns 6 different mathematics books and 4 different computer science books and wish to fill 5 positions on a shelf. If the first 2 positions are to be occupied by math books and the last 3 by computer science books, in how many ways can this be done?
+
+```{python}
+import math
+
+math_books = 6
+cs_books = 4
+
+# Calculate the arrangements
+math_arrangements = math.perm(math_books, 2)
+cs_arrangements = math.perm(cs_books, 3)
+
+total_arrangements = math_arrangements * cs_arrangements
+total_arrangements
+```
+
+## Ejercicio 13
+
+How many ways can a team of 30 hockey players choose a captain and two alternate captains?
+
+
+```{python}
+import math
+captain_choices = 30
+
+alternate_choices = math.comb(29, 2)
+
+total_choices = captain_choices * alternate_choices
+total_choices
+```
+
+## Problema 16
+
+A boy has 2 red , 4 yellow and 3 green marbles. In how many ways can the boy arrange the marbles in a line if:
+
+a) Marbles of the same color are indistinguishable?
+
+```{python}
+from math import factorial
+
+total_marbles = 2 + 4 + 3
+ways = factorial(total_marbles) / (factorial(2) * factorial(4) * factorial(3))
+ways
+
+```
+
+
+b) All marbles are distinguishable?
+
+```{python}
+ways_distinguishable = factorial(total_marbles)
+
+ways_distinguishable
+```
+
+## Ejercicio 22
+
+How many ways can 4 CD's be chosen from a case of 10 CDs? 
+
+```{python}
+import math
+
+total_ways = math.comb(10,4)
+
+total_ways
+```
+
+# Problema 40
+
+There are 336
+ students in a college who have taken a course in calculus, 223 who have take a course in discrete mathematics, and 149 who have taken a course in both calculus and discrete mathematics. How many students at this college have taken a course in either calculus or discrete mathematics?
+
+
+$$\# (A \cup B) = \# A + \# B - \# (A \cap B)  = 336+ 223-149= 410$$
